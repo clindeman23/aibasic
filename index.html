@@ -434,11 +434,52 @@ footer a{color:var(--sunset);text-decoration:none;font-weight:700}
       </table>
     </div>
 
-    <div class="stitle mt">🌅 Where to Go Next</div>
-    <div class="tgrid">
-      <div class="tip"><h4>📋 Prompt Shack</h4><p>Ready-to-use copy-paste prompts for every subject and grade. Click any prompt to copy instantly.</p><a href="#" onclick="go('prompts',document.querySelectorAll('nav button')[5]);return false">Browse the shack →</a></div>
-      <div class="tip"><h4>🧭 Surf Forecast</h4><p>Not sure which AI to use? Match your task to the right tool in seconds.</p><a href="#" onclick="go('decision',document.querySelectorAll('nav button')[6]);return false">Check conditions →</a></div>
-      <div class="tip"><h4>🏆 The Competition</h4><p>Real artifacts built for MCA — open and use them today in your classroom.</p><a href="#" onclick="go('examples',document.querySelectorAll('nav button')[7]);return false">Watch the pros →</a></div>
+    <div class="stitle mt">🪙 What is a Token?</div>
+    <div class="ibar" style="font-size:.95rem;line-height:1.7">
+      <strong>Tokens are the currency of AI.</strong> Every word you type costs tokens. Every word the AI writes back costs tokens. A token is roughly ¾ of a word — so "beach" is 1 token, "I love the beach" is about 5. When you hit your daily message limit, you've essentially run out of tokens for the day. <strong>Longer prompts with big pasted documents spend tokens fast</strong> — shorter, focused prompts stretch your limit further.
+    </div>
+
+    <div class="cgrid">
+      <div class="card">
+        <div class="ch cl">🌊 How Claude Thinks</div>
+        <div class="cb">
+          <p><strong>Claude uses a huge token "tank" — up to 200,000 tokens per conversation.</strong> That's roughly a 150-page book worth of context it can hold and reason over at once.</p>
+          <ul>
+            <li>Reads your entire pasted document before answering — nothing gets cut off</li>
+            <li>Extended Thinking mode spends extra tokens working step-by-step through hard problems before replying</li>
+            <li>Artifacts (games, tools, forms) are generated in one big focused burst of tokens</li>
+            <li>Best value for complex, multi-part tasks — one long prompt beats five short ones</li>
+          </ul>
+        </div>
+      </div>
+      <div class="card">
+        <div class="ch cg">🏄 How ChatGPT Thinks</div>
+        <div class="cb">
+          <p><strong>GPT-4o holds up to 128,000 tokens per conversation.</strong> Reasoning models like o1 and o3 spend a hidden pool of "thinking tokens" before replying — you don't see the work, but it's happening.</p>
+          <ul>
+            <li>Standard GPT-4o replies quickly — fewer internal thinking tokens, faster output</li>
+            <li>o1 / o3 models burn extra tokens behind the scenes doing deep reasoning — slower but more accurate on hard problems</li>
+            <li>Image generation (DALL-E) runs separately from text tokens</li>
+            <li>Voice mode converts speech to tokens and back — costs the same as typing</li>
+          </ul>
+        </div>
+      </div>
+      <div class="card">
+        <div class="ch gm">🌴 How Gemini Thinks</div>
+        <div class="cb">
+          <p><strong>Gemini has the biggest context window of the three — over 1,000,000 tokens</strong> on Gemini 1.5 Pro. That's enough to hold an entire textbook in memory at once.</p>
+          <ul>
+            <li>Can read a full Google Doc, spreadsheet, or YouTube transcript without summarizing first</li>
+            <li>Multimodal by default — images, video, and audio all convert to tokens and cost the same budget</li>
+            <li>Because it lives in Google Workspace, many tokens are "free" background context from your Drive files</li>
+            <li>Best when your source material is already in Google — fewer copy-paste tokens wasted</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="ibar mt" style="font-size:.92rem;line-height:1.68;margin-top:1.25rem">
+      <strong>🏄 Teacher tip:</strong> Paste your notes once at the start and ask for everything in one message — rubric, exit tickets, and bell ringers together. You spend the input tokens once instead of three times, and each model can keep context across the whole response.
     </div>
 
   </div>
