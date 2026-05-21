@@ -1,0 +1,1004 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Tools for Teachers 🌊 MCA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --sand:    #fdf6e9;
+  --sand-md: #f0ddb8;
+  --sand-dk: #c8872a;
+  --ocean:   #0077b6;
+  --ocean-dk:#023e8a;
+  --ocean-lt:#90e0ef;
+  --coral:   #e05c3a;
+  --sunset:  #f4a261;
+  --palm:    #2d8f6f;
+  --foam:    #f0faff;
+  --wood:    #1a3340;
+  --muted:   #7a6a54;
+  --border:  #e8d5b0;
+  --cl:  #0077b6;
+  --cg:  #d95f3b;
+  --gm:  #2d8f6f;
+  --gold:#f4a261;
+  --bg:  #fdf6e9;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Nunito',system-ui,sans-serif;background:var(--bg);color:#2a1f14;min-height:100vh}
+
+/* ── HEADER / NAV ── */
+header{
+  background:var(--wood);
+  display:flex;align-items:center;gap:.75rem;
+  padding:0 1.5rem;height:60px;
+  position:sticky;top:0;z-index:100;
+  box-shadow:0 3px 12px rgba(0,0,0,.35);
+  border-bottom:3px solid var(--sand-dk);
+  overflow:hidden;
+}
+.logo{
+  font-family:'Pacifico',cursive;
+  font-size:1.1rem;color:var(--sunset);
+  white-space:nowrap;flex-shrink:0;
+  text-shadow:1px 1px 0 rgba(0,0,0,.3);
+}
+.logo span{color:#90e0ef}
+nav{display:flex;gap:.2rem;flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;padding:6px 0;scrollbar-width:none}
+nav::-webkit-scrollbar{display:none}
+nav button{
+  background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);
+  color:rgba(255,255,255,.75);
+  padding:.42rem .85rem;border-radius:20px;
+  cursor:pointer;font-family:'Nunito',sans-serif;font-size:.78rem;font-weight:700;
+  transition:all .18s;white-space:nowrap;flex-shrink:0;
+  min-height:36px;-webkit-tap-highlight-color:transparent;
+}
+nav button:hover{background:rgba(255,255,255,.18);color:white;border-color:rgba(255,255,255,.3)}
+nav button.active{background:var(--sunset);color:white;border-color:var(--sunset);box-shadow:0 2px 8px rgba(244,162,97,.5)}
+
+/* ── PAGES ── */
+.page{display:none}.page.active{display:block}
+
+/* ── HERO ── */
+.hero{color:white;padding:3.25rem 1.5rem 0;text-align:center;position:relative}
+.hero h1{font-family:'Pacifico',cursive;font-size:2.2rem;font-weight:400;margin-bottom:.6rem;text-shadow:2px 2px 4px rgba(0,0,0,.25)}
+.hero p{font-size:.97rem;opacity:.93;max-width:580px;margin:0 auto 1.1rem;line-height:1.7;font-weight:600}
+.badges{display:flex;gap:.6rem;justify-content:center;flex-wrap:wrap;margin-bottom:1.5rem}
+.badge{background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.35);border-radius:99px;padding:.3rem .9rem;font-size:.76rem;font-weight:700}
+
+/* Wave bottom on every hero */
+.wave-btm{height:52px;display:block;margin-top:-.5px}
+.wave-btm svg{display:block;width:100%;height:100%}
+
+/* Hero gradients — one per page */
+.h-main  {background:linear-gradient(160deg,#c8560a 0%,#e87d3e 35%,#0089b8 70%,#023e8a 100%)}
+.h-cl    {background:linear-gradient(160deg,#012a5e 0%,#0059a0 45%,#00a8d0 100%)}
+.h-cg    {background:linear-gradient(160deg,#7a1f0a 0%,#cc4a28 40%,#e87d3e 75%,#f5b942 100%)}
+.h-gm    {background:linear-gradient(160deg,#0d3d2a 0%,#1e7a56 45%,#38c99a 80%,#5bd4c5 100%)}
+.h-pt    {background:linear-gradient(160deg,#7a4a00 0%,#c8872a 40%,#0077b6 80%,#023e8a 100%)}
+.h-pr    {background:linear-gradient(160deg,#6b1a6b 0%,#a8386e 40%,#e05c3a 75%,#f4a261 100%)}
+.h-dc    {background:linear-gradient(160deg,#0d2035 0%,#1d4570 45%,#2b82a0 75%,#68c5cc 100%)}
+.h-ex    {background:linear-gradient(160deg,#8a5200 0%,#c8872a 35%,#e8c020 65%,#f5e050 100%)}
+
+/* ── LAYOUT ── */
+.wrap{max-width:940px;margin:0 auto;padding:2.25rem 1.5rem}
+.mt{margin-top:2rem}
+
+/* ── SECTION TITLE ── */
+.stitle{
+  font-family:'Pacifico',cursive;font-weight:400;
+  font-size:1.2rem;color:var(--ocean-dk);
+  border-bottom:3px solid var(--sunset);display:inline-block;
+  padding-bottom:.3rem;margin-bottom:1.1rem;
+}
+
+/* ── INFO BAR ── */
+.ibar{
+  background:linear-gradient(135deg,#fff9ee,#fff3d8);
+  border:1.5px solid var(--sand-dk);border-radius:10px;
+  padding:.7rem 1.05rem;font-size:.83rem;color:#5a3a00;margin-bottom:1.4rem;
+  box-shadow:0 1px 4px rgba(200,135,42,.15);
+}
+.ibar a{color:var(--ocean);font-weight:700}
+
+/* ── CARD GRID ── */
+.cgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(245px,1fr));gap:1.1rem}
+.card{
+  background:#fffdf8;border-radius:14px;overflow:hidden;
+  box-shadow:0 4px 16px rgba(0,119,182,.12);
+  border:1.5px solid var(--border);
+  transition:transform .2s,box-shadow .2s;display:flex;flex-direction:column;
+}
+.card:hover{transform:translateY(-4px);box-shadow:0 8px 28px rgba(0,119,182,.2)}
+.ch{padding:.9rem 1.2rem;color:white;font-weight:800;font-size:.95rem;display:flex;align-items:center;gap:.5rem}
+.ch.cl{background:linear-gradient(135deg,#005f94,#0096c7)}
+.ch.cg{background:linear-gradient(135deg,#b83e20,#e05c3a)}
+.ch.gm{background:linear-gradient(135deg,#1a6b4a,#2d9e72)}
+.cb{padding:1rem 1.2rem;flex:1}
+.cb p{font-size:.84rem;color:#3a2a1a;line-height:1.65;margin-bottom:.7rem}
+.cb ul{list-style:none;display:flex;flex-direction:column;gap:.45rem}
+.cb li{font-size:.83rem;display:flex;gap:.5rem;color:#3a2a1a}
+.cb li::before{content:'🌊';flex-shrink:0;font-size:.75rem;margin-top:.1rem}
+.cf{padding:.65rem 1.2rem 1.1rem}
+
+/* ── FEATURES ── */
+.fgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(205px,1fr));gap:1rem}
+.feat{
+  background:#fffdf8;border-radius:10px;padding:1rem 1.1rem;
+  border-left:4px solid var(--sunset);
+  box-shadow:0 2px 8px rgba(0,0,0,.07);
+}
+.feat.cl{border-color:var(--cl)}.feat.cg{border-color:var(--cg)}.feat.gm{border-color:var(--gm)}
+.feat h4{font-size:.87rem;font-weight:800;margin-bottom:.3rem;color:var(--ocean-dk)}
+.feat p{font-size:.8rem;color:var(--muted);line-height:1.58}
+
+/* ── PROMPTS ── */
+.pgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1rem}
+.pcard{
+  background:#fffdf8;border-radius:10px;
+  border:1.5px solid var(--border);
+  box-shadow:0 2px 8px rgba(0,0,0,.07);overflow:hidden;
+}
+.plabel{padding:.5rem 1rem;font-size:.77rem;font-weight:800;color:white}
+.plabel.cl{background:linear-gradient(135deg,#005f94,#0096c7)}
+.plabel.cg{background:linear-gradient(135deg,#b83e20,#e05c3a)}
+.plabel.gm{background:linear-gradient(135deg,#1a6b4a,#2d9e72)}
+.pbody{padding:.85rem 1rem}
+.pbody h4{font-size:.85rem;font-weight:800;margin-bottom:.38rem;color:var(--ocean-dk)}
+.pt{
+  background:linear-gradient(135deg,#fdf3dc,#fef8ee);
+  border-left:3px solid var(--sunset);
+  padding:.6rem .8rem;font-size:.79rem;line-height:1.65;
+  border-radius:0 8px 8px 0;font-family:Georgia,serif;color:#2a1a0a;
+  cursor:pointer;transition:background .15s;
+}
+.pt:hover{background:linear-gradient(135deg,#fce8c0,#fdf0d8)}
+.pt::after{content:'📋 click to copy';display:block;font-size:.67rem;color:var(--muted);margin-top:.32rem;font-family:'Nunito',sans-serif}
+.pt.copied{background:linear-gradient(135deg,#d4f5e9,#e8faf0)}
+.pt.copied::after{content:'✅ Copied!';color:var(--palm);font-weight:800}
+
+/* ── PROMPT SECTION HEADING ── */
+.psec{margin-bottom:2.25rem}
+.pshead{
+  display:flex;align-items:center;gap:.5rem;color:white;font-weight:800;font-size:.88rem;
+  padding:.5rem .95rem;border-radius:8px;margin-bottom:1rem;
+}
+.pshead.cl{background:linear-gradient(135deg,#005f94,#0096c7)}
+.pshead.cg{background:linear-gradient(135deg,#b83e20,#e05c3a)}
+.pshead.gm{background:linear-gradient(135deg,#1a6b4a,#2d9e72)}
+
+/* ── TIPS ── */
+.tgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem}
+.tip{
+  background:#fffdf8;border-radius:12px;padding:1.1rem;
+  border-top:4px solid var(--sunset);
+  box-shadow:0 2px 10px rgba(0,119,182,.1);
+}
+.tip h4{font-size:.87rem;font-weight:800;margin-bottom:.32rem;color:var(--ocean-dk)}
+.tip p{font-size:.81rem;color:#3a2a1a;line-height:1.62}
+.tip a{color:var(--ocean);font-weight:800;font-size:.81rem}
+
+/* ── TABLES ── */
+.twrap{overflow-x:auto;border-radius:12px;box-shadow:0 3px 16px rgba(0,119,182,.14)}
+table{width:100%;border-collapse:collapse;background:#fffdf8;font-size:.84rem}
+thead tr{background:var(--wood);color:white}
+thead th{padding:.85rem 1.1rem;text-align:left;font-weight:800;font-family:'Nunito',sans-serif}
+thead th.cl{background:linear-gradient(135deg,#005f94,#0096c7)}
+thead th.cg{background:linear-gradient(135deg,#b83e20,#e05c3a)}
+thead th.gm{background:linear-gradient(135deg,#1a6b4a,#2d9e72)}
+tbody tr:nth-child(even){background:#fdf3e3}
+tbody tr:hover{background:#fce8c0}
+td{padding:.7rem 1.1rem;border-bottom:1px solid var(--border)}
+td:first-child{font-weight:700}
+.yes{color:var(--palm);font-weight:800}.no{color:#c0392b}.part{color:var(--sand-dk);font-weight:700}
+
+/* ── TAGS ── */
+.tag{display:inline-block;border-radius:99px;padding:.22rem .8rem;font-size:.76rem;font-weight:800;color:white;white-space:nowrap}
+.tag.cl{background:linear-gradient(135deg,#005f94,#0096c7)}
+.tag.cg{background:linear-gradient(135deg,#b83e20,#e05c3a)}
+.tag.gm{background:linear-gradient(135deg,#1a6b4a,#2d9e72)}
+.tag.both{background:linear-gradient(135deg,#c8870a,#f4a261)}
+
+/* ── BUTTONS ── */
+.btn{display:block;text-align:center;padding:.6rem 1rem;border-radius:20px;text-decoration:none;font-weight:800;font-family:'Nunito',sans-serif;font-size:.84rem;transition:all .18s;color:white;box-shadow:0 2px 8px rgba(0,0,0,.15)}
+.btn:hover{opacity:.88;transform:translateY(-1px)}
+.btn.cl{background:linear-gradient(135deg,#005f94,#0096c7)}
+.btn.cg{background:linear-gradient(135deg,#b83e20,#e05c3a)}
+.btn.gm{background:linear-gradient(135deg,#1a6b4a,#2d9e72)}
+.btn.gold{background:linear-gradient(135deg,#a86a00,#c8872a)}
+.btn-row{display:flex;gap:.9rem;flex-wrap:wrap;margin-top:.5rem}
+.btn-inline{display:inline-block;padding:.6rem 1.4rem;width:auto}
+
+/* ── GOOGLE CARDS ── */
+.ggrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:1rem}
+.gcard{
+  background:#fffdf8;border-radius:12px;padding:1rem;text-align:center;
+  box-shadow:0 2px 10px rgba(45,143,111,.12);
+  border-bottom:3px solid var(--gm);
+}
+.gcard .gi{font-size:1.85rem;margin-bottom:.4rem}
+.gcard h4{font-size:.85rem;font-weight:800;margin-bottom:.24rem;color:var(--ocean-dk)}
+.gcard p{font-size:.77rem;color:var(--muted);line-height:1.55}
+
+/* ── CODEX BOX ── */
+.codex{
+  background:linear-gradient(135deg,#0a1e30,#0d2d45);
+  border-radius:14px;padding:1.4rem;color:white;margin-bottom:1.75rem;
+  border:1.5px solid rgba(144,224,239,.2);
+  box-shadow:0 4px 20px rgba(0,20,40,.3);
+}
+.codex h3{font-family:'Pacifico',cursive;font-weight:400;font-size:1.15rem;margin-bottom:.5rem;color:#90e0ef}
+.codex p{font-size:.85rem;opacity:.9;line-height:1.68;margin-bottom:.9rem}
+.cxgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(175px,1fr));gap:.75rem}
+.cxi{
+  background:rgba(144,224,239,.1);border:1px solid rgba(144,224,239,.25);
+  border-radius:10px;padding:.75rem;font-size:.8rem;line-height:1.55;
+}
+.cxi strong{display:block;margin-bottom:.2rem;color:#90e0ef;font-size:.83rem;font-weight:800}
+
+/* ── EXAMPLE HINT ── */
+.ehint{
+  background:linear-gradient(135deg,#fdf3dc,#fef8ee);
+  border-radius:8px;padding:.75rem;font-size:.78rem;color:var(--muted);
+  margin-bottom:.9rem;border-left:3px solid var(--sunset);
+}
+.ehint strong{color:var(--ocean-dk);display:block;margin-bottom:.2rem;font-weight:800}
+
+/* ── FOOTER ── */
+footer{
+  background:var(--wood);color:rgba(255,255,255,.6);text-align:center;
+  padding:1.4rem;font-size:.78rem;margin-top:3rem;
+  border-top:3px solid var(--sand-dk);
+}
+footer a{color:var(--sunset);text-decoration:none;font-weight:700}
+
+/* ── TABLET / iPAD ── */
+@media(max-width:1024px){
+  .wrap{padding:2rem 1.25rem}
+  .hero{padding:2.5rem 1.25rem 0}
+  .hero h1{font-size:1.9rem}
+  .hero p{font-size:1rem}
+  .cb p,.cb li{font-size:.9rem}
+  .feat h4{font-size:.92rem}.feat p{font-size:.85rem}
+  .tip h4{font-size:.92rem}.tip p{font-size:.85rem}
+  .pt{font-size:.84rem}
+  .pbody h4{font-size:.9rem}
+  .gcard h4{font-size:.9rem}.gcard p{font-size:.82rem}
+  .ibar{font-size:.87rem}
+  .stitle{font-size:1.15rem}
+  nav button{font-size:.82rem;padding:.45rem .9rem}
+  .fgrid{grid-template-columns:repeat(2,1fr)}
+  .tgrid{grid-template-columns:repeat(2,1fr)}
+  .ggrid{grid-template-columns:repeat(3,1fr)}
+  .cxgrid{grid-template-columns:repeat(2,1fr)}
+  .pgrid{grid-template-columns:repeat(2,1fr)}
+  table{font-size:.84rem}
+  td,thead th{padding:.72rem .95rem}
+}
+
+/* ── iPAD PORTRAIT ── */
+@media(max-width:820px){
+  header{height:56px}
+  .hero h1{font-size:1.75rem}
+  .hero p{font-size:.94rem}
+  .fgrid{grid-template-columns:repeat(2,1fr)}
+  .cgrid{grid-template-columns:repeat(2,1fr)}
+  .ggrid{grid-template-columns:repeat(2,1fr)}
+  .pgrid{grid-template-columns:1fr}
+  .tgrid{grid-template-columns:repeat(2,1fr)}
+  .cxgrid{grid-template-columns:repeat(2,1fr)}
+}
+
+/* ── iPHONE ── */
+@media(max-width:640px){
+  header{flex-direction:column;height:auto;padding:.6rem 1rem .5rem;gap:.3rem;align-items:flex-start;overflow:visible}
+  nav{width:100%;padding-bottom:4px}
+  .logo{font-size:1rem}
+  .hero{padding:1.9rem 1.1rem 0}
+  .hero h1{font-size:1.5rem;line-height:1.25}
+  .hero p{font-size:.88rem;margin-bottom:.9rem}
+  .badge{font-size:.72rem;padding:.28rem .75rem}
+  .wave-btm{height:36px}
+  .wrap{padding:1.5rem 1rem}
+  .mt{margin-top:1.5rem}
+  .stitle{font-size:1rem}
+  .cgrid,.fgrid,.tgrid,.pgrid,.ggrid,.cxgrid{grid-template-columns:1fr}
+  .card:hover{transform:none}
+  .ch{font-size:.9rem}
+  .cb p,.cb li{font-size:.86rem}
+  .feat h4{font-size:.9rem}.feat p{font-size:.83rem}
+  .tip h4{font-size:.9rem}.tip p{font-size:.83rem}
+  .pt{font-size:.83rem}
+  .pbody h4{font-size:.88rem}
+  .twrap{border-radius:8px}
+  table{font-size:.8rem;min-width:480px}
+  td,thead th{padding:.6rem .75rem}
+  .ibar{font-size:.84rem}
+  .btn{padding:.65rem 1rem;font-size:.87rem}
+  .btn-row{flex-direction:column}
+  .btn-inline{width:100%;text-align:center}
+  .risen-row{grid-template-columns:1fr !important}
+  .compare-grid{grid-template-columns:1fr !important}
+  .codex{padding:1.1rem}
+  .codex h3{font-size:1rem}
+  footer{font-size:.75rem;padding:1rem}
+}
+
+/* ── TOUCH: no hover lifts ── */
+@media(hover:none){
+  .card:hover{transform:none;box-shadow:0 4px 16px rgba(0,119,182,.12)}
+  .pt:hover{background:linear-gradient(135deg,#fdf3dc,#fef8ee)}
+  .btn:hover{opacity:1;transform:none}
+  nav button:hover{background:rgba(255,255,255,.08);color:rgba(255,255,255,.75);border-color:rgba(255,255,255,.12)}
+  nav button.active:hover{background:var(--sunset);color:white}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">🌊 Vibe Coding <span>MCA</span></div>
+  <nav>
+    <button class="active" onclick="go('overview',this)">🏖️ Overview</button>
+    <button onclick="go('claude',this)">🌊 Claude</button>
+    <button onclick="go('chatgpt',this)">🏄 ChatGPT + Codex</button>
+    <button onclick="go('gemini',this)">🌴 Gemini</button>
+    <button onclick="go('prompting',this)">🐧 Surf School</button>
+    <button onclick="go('prompts',this)">🏄‍♀️ Prompt Shack</button>
+    <button onclick="go('decision',this)">🧭 Forecast</button>
+    <button onclick="go('examples',this)">🏆 The Competition</button>
+  </nav>
+</header>
+
+<!-- ══════════════════════════════════════════════
+     OVERVIEW — Sunny Beach Landing
+══════════════════════════════════════════════ -->
+<div id="pg-overview" class="page active">
+  <div class="hero h-main">
+    <h1>AI Tools for Teachers 🤙</h1>
+    <p>Hang ten on your prep time. Claude, ChatGPT, and Gemini are all free and genuinely powerful. This guide breaks down what each one does best — so you can ride the right wave for every task.</p>
+    <div class="badges">
+      <span class="badge">🌊 All Free Tiers</span>
+      <span class="badge">🏫 Mount Carmel Academy</span>
+      <span class="badge">☀️ Professional Development</span>
+    </div>
+    <svg class="wave-btm" viewBox="0 0 1440 52" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,26 C240,52 480,0 720,26 C960,52 1200,0 1440,26 L1440,52 L0,52 Z" fill="#fdf6e9"/>
+    </svg>
+  </div>
+  <div class="wrap">
+
+    <div class="stitle">🏄 Pick Your Wave</div>
+    <div class="cgrid">
+      <div class="card">
+        <div class="ch cl">🌊 Claude <span style="font-size:.72rem;opacity:.75;margin-left:auto">claude.ai</span></div>
+        <div class="cb">
+          <p>Best for differentiation, long instructions, full unit plans, rubrics, and interactive tools that render live in the browser.</p>
+          <ul>
+            <li>Tiered study guides in one prompt</li>
+            <li>Live review games &amp; flashcard apps</li>
+            <li>Full rubrics, bell ringers, unit plans</li>
+            <li>Error analysis on student work</li>
+          </ul>
+        </div>
+        <div class="cf"><button class="btn cl" onclick="go('claude',document.querySelectorAll('nav button')[1])">Dive In →</button></div>
+      </div>
+      <div class="card">
+        <div class="ch cg">🏄 ChatGPT + Codex <span style="font-size:.72rem;opacity:.75;margin-left:auto">chatgpt.com</span></div>
+        <div class="cb">
+          <p>Best for AI-generated images, creative writing, voice mode, and building custom classroom tools with Codex — no coding needed.</p>
+          <ul>
+            <li>DALL-E images for handouts &amp; slides</li>
+            <li>Story hooks and creative content</li>
+            <li>Custom timers, pickers &amp; calculators</li>
+            <li>Spreadsheet &amp; grade data analysis</li>
+          </ul>
+        </div>
+        <div class="cf"><button class="btn cg" onclick="go('chatgpt',document.querySelectorAll('nav button')[2])">Catch the Wave →</button></div>
+      </div>
+      <div class="card">
+        <div class="ch gm">🌴 Gemini <span style="font-size:.72rem;opacity:.75;margin-left:auto">gemini.google.com</span></div>
+        <div class="cb">
+          <p>Best for teachers in Google Workspace. Gemini lives inside Drive, Docs, Gmail, and Classroom — no app switching needed.</p>
+          <ul>
+            <li>Summarize Google Docs instantly</li>
+            <li>Draft emails from inside Gmail</li>
+            <li>Work directly inside Classroom</li>
+            <li>Summarize YouTube videos</li>
+          </ul>
+        </div>
+        <div class="cf"><button class="btn gm" onclick="go('gemini',document.querySelectorAll('nav button')[3])">Island Hop →</button></div>
+      </div>
+    </div>
+
+    <div class="stitle mt">🔭 Free Tier Comparison</div>
+    <div class="twrap">
+      <table>
+        <thead><tr><th>Feature</th><th class="cl">🌊 Claude</th><th class="cg">🏄 ChatGPT</th><th class="gm">🌴 Gemini</th></tr></thead>
+        <tbody>
+          <tr><td>Cost</td><td>Free</td><td>Free</td><td>Free</td></tr>
+          <tr><td>Daily Message Limit</td><td>20–40/day</td><td>~40/day</td><td>Generous</td></tr>
+          <tr><td>Live Interactive Artifacts</td><td><span class="yes">● YES</span> — renders in chat</td><td><span class="part">● Code only</span>, no render</td><td><span class="part">● Limited</span></td></tr>
+          <tr><td>File &amp; Image Uploads</td><td><span class="yes">● YES</span></td><td><span class="yes">● YES</span></td><td><span class="yes">● YES</span></td></tr>
+          <tr><td>Image Generation</td><td><span class="no">● No</span></td><td><span class="yes">● YES</span> (DALL-E)</td><td><span class="yes">● YES</span> (Imagen)</td></tr>
+          <tr><td>Google Workspace</td><td><span class="no">● No</span></td><td><span class="no">● No</span></td><td><span class="yes">● YES</span> — Drive, Docs, Gmail</td></tr>
+          <tr><td>Instruction Following</td><td><span class="yes">● Excellent</span></td><td><span class="yes">● Very Good</span></td><td><span class="part">● Good</span></td></tr>
+          <tr><td><strong>Best At</strong></td><td>Differentiation, long tasks, tools</td><td>Writing, images, coding tools</td><td>Google Workspace</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="stitle mt">🌅 Where to Go Next</div>
+    <div class="tgrid">
+      <div class="tip"><h4>📋 Prompt Shack</h4><p>Ready-to-use copy-paste prompts for every subject and grade. Click any prompt to copy instantly.</p><a href="#" onclick="go('prompts',document.querySelectorAll('nav button')[5]);return false">Browse the shack →</a></div>
+      <div class="tip"><h4>🧭 Surf Forecast</h4><p>Not sure which AI to use? Match your task to the right tool in seconds.</p><a href="#" onclick="go('decision',document.querySelectorAll('nav button')[6]);return false">Check conditions →</a></div>
+      <div class="tip"><h4>🏆 The Competition</h4><p>Real artifacts built for MCA — open and use them today in your classroom.</p><a href="#" onclick="go('examples',document.querySelectorAll('nav button')[7]);return false">Watch the pros →</a></div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     CLAUDE — The Deep Blue Ocean
+══════════════════════════════════════════════ -->
+<div id="pg-claude" class="page">
+  <div class="hero h-cl">
+    <h1>🌊 Claude</h1>
+    <p>The deep ocean of AI tools. Powerful, precise, and surprisingly calm under pressure — best for differentiation, complex instructions, full unit plans, rubrics, and live interactive tools.</p>
+    <div class="badges"><span class="badge">🌊 claude.ai</span><span class="badge">🆓 Free tier</span><span class="badge">📬 20–40 messages/day</span></div>
+    <svg class="wave-btm" viewBox="0 0 1440 52" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,20 C360,50 720,0 1080,30 C1260,44 1380,10 1440,20 L1440,52 L0,52 Z" fill="#fdf6e9"/>
+    </svg>
+  </div>
+  <div class="wrap">
+    <div class="ibar">🏄 <strong>Paddle out:</strong> Visit <a href="https://claude.ai" target="_blank">claude.ai</a> — free account, no credit card needed. You're in the water in under a minute.</div>
+
+    <div class="stitle">🐬 What Claude Does Best</div>
+    <div class="fgrid">
+      <div class="feat cl"><h4>🎮 Interactive Artifacts</h4><p>Claude builds and renders live HTML tools — quizzes, review games, flashcard decks — right in the chat window. No extra software.</p></div>
+      <div class="feat cl"><h4>📊 Differentiation Engine</h4><p>Ask once, get three versions — struggling, on-level, and advanced. Content stays consistent while complexity adjusts.</p></div>
+      <div class="feat cl"><h4>📝 Long Instructions</h4><p>Full unit plans with daily objectives, activities, materials, and assessments — Claude handles multi-step requests without losing track.</p></div>
+      <div class="feat cl"><h4>📄 Document Analysis</h4><p>Upload a PDF, article, or student essay and ask Claude to summarize it, find misconceptions, or generate discussion questions.</p></div>
+      <div class="feat cl"><h4>✅ Rubric Builder</h4><p>Generate detailed, standards-aligned rubrics in minutes. Specify grade, subject, and objectives — Claude handles the rest.</p></div>
+      <div class="feat cl"><h4>⏰ Bell Ringer Factory</h4><p>Ask for a full week or month of bell ringers on any topic in one prompt. Delivered formatted and ready to copy-paste.</p></div>
+    </div>
+
+    <div class="stitle mt">🤙 Sample Prompts — Click to Copy</div>
+    <div class="pgrid">
+      <div class="pcard"><div class="plabel cl">Differentiation</div><div class="pbody"><h4>Three-Level Study Guide</h4><div class="pt" onclick="copyPrompt(this)">Here are my notes on [topic]. Create three study guides — one for struggling students using simple language, one on-level, and one for advanced students with deeper thinking questions. Grade: [level].</div></div></div>
+      <div class="pcard"><div class="plabel cl">Assessment</div><div class="pbody"><h4>Error Analysis</h4><div class="pt" onclick="copyPrompt(this)">A student wrote this solution: [paste work]. Identify the likely misconception causing the error and suggest how I should reteach it.</div></div></div>
+      <div class="pcard"><div class="plabel cl">Problem Sets</div><div class="pbody"><h4>Tiered Word Problems</h4><div class="pt" onclick="copyPrompt(this)">Write 8 word problems about [topic] for [grade level] students. Make 3 easy, 3 medium, and 2 challenging. Use real-world contexts students care about.</div></div></div>
+      <div class="pcard"><div class="plabel cl">Reading</div><div class="pbody"><h4>Reading Level Rewrite</h4><div class="pt" onclick="copyPrompt(this)">Rewrite this passage at a [6th / 8th / 10th] grade reading level without losing the key ideas: [paste passage here]</div></div></div>
+      <div class="pcard"><div class="plabel cl">Discussion</div><div class="pbody"><h4>Layered Discussion Questions</h4><div class="pt" onclick="copyPrompt(this)">Create 6 discussion questions for [text / passage / topic]. Include 2 recall, 2 analysis, and 2 that connect to students' lives. Grade: [level].</div></div></div>
+      <div class="pcard"><div class="plabel cl">Unit Planning</div><div class="pbody"><h4>Full Unit Plan</h4><div class="pt" onclick="copyPrompt(this)">Create a complete 2-week unit plan on [topic] for [grade level]. Include daily objectives, activities, materials, formative assessments, and a summative assessment. Align to [standard or theme].</div></div></div>
+      <div class="pcard"><div class="plabel cl">Bell Ringers</div><div class="pbody"><h4>Full Week of Bell Ringers</h4><div class="pt" onclick="copyPrompt(this)">Create 5 bell ringer questions for a week of [subject] on [topic] for [grade level]. Each should take 3–5 minutes. Mix recall, application, and one that sparks curiosity.</div></div></div>
+      <div class="pcard"><div class="plabel cl">Rubric</div><div class="pbody"><h4>Writing Rubric</h4><div class="pt" onclick="copyPrompt(this)">Create a detailed 4-point rubric for a [type of writing] assignment for [grade] students. Include criteria for: thesis/argument, evidence, organization, voice, and conventions. Format as a table.</div></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     CHATGPT — Catching Waves
+══════════════════════════════════════════════ -->
+<div id="pg-chatgpt" class="page">
+  <div class="hero h-cg">
+    <h1>🏄 ChatGPT + Codex</h1>
+    <p>The high-energy surfer of AI tools. Best for AI images, creative storytelling, voice mode on the go, and building custom classroom tools with Codex — no coding required. Just describe it and drop in.</p>
+    <div class="badges"><span class="badge">🏄 chatgpt.com</span><span class="badge">🆓 Free tier</span><span class="badge">📬 ~40 messages/day</span></div>
+    <svg class="wave-btm" viewBox="0 0 1440 52" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,35 C200,10 400,50 600,25 C800,0 1100,45 1440,20 L1440,52 L0,52 Z" fill="#fdf6e9"/>
+    </svg>
+  </div>
+  <div class="wrap">
+    <div class="ibar">🏄 <strong>Paddle out:</strong> Visit <a href="https://chatgpt.com" target="_blank">chatgpt.com</a> — free account. Codex is available under the model selector — look for it when starting a new chat.</div>
+
+    <div class="codex">
+      <h3>⚡ What is Codex? — The Classroom Tool Shaper</h3>
+      <p>Codex is OpenAI's code-focused AI baked right into ChatGPT. You don't write a single line of code — just describe what you want in plain English and Codex shapes it into something real. Teachers are building custom tools in minutes.</p>
+      <div class="cxgrid">
+        <div class="cxi"><strong>Seating Chart Generator</strong>Describe your room layout and student names — get a draggable, editable chart.</div>
+        <div class="cxi"><strong>Grade Calculator</strong>Weighted grade calculator with custom percentages for tests, quizzes, and homework.</div>
+        <div class="cxi"><strong>Random Student Picker</strong>Spinning wheel with your class list — marks students as already called on.</div>
+        <div class="cxi"><strong>Exit Ticket Form</strong>Students enter name, rate understanding, and leave a question. Saves all responses.</div>
+        <div class="cxi"><strong>Classroom Timer</strong>Visual countdown that shifts green → yellow → red with a sound alert when time is up.</div>
+        <div class="cxi"><strong>Vocabulary Flashcards</strong>Interactive flip-cards from any word list. Tracks score and includes shuffle button.</div>
+      </div>
+    </div>
+
+    <div class="stitle">🌊 What ChatGPT Does Best</div>
+    <div class="fgrid">
+      <div class="feat cg"><h4>🎨 AI Image Generation (DALL-E)</h4><p>Generate custom illustrations for worksheets, presentations, and bulletin boards. Describe the image — DALL-E creates it instantly, free.</p></div>
+      <div class="feat cg"><h4>✍️ Creative Writing &amp; Stories</h4><p>Write engaging lesson hooks, short stories for ELA, narrative examples for any subject, or creative scenarios to spark class discussion.</p></div>
+      <div class="feat cg"><h4>🎙️ Voice Mode</h4><p>Use ChatGPT hands-free on your phone during commutes or prep periods. Brainstorm lessons, draft emails, and plan units on the go.</p></div>
+      <div class="feat cg"><h4>📊 Data Analysis</h4><p>Upload a spreadsheet of grades or survey results — ChatGPT finds patterns, flags struggling students, and summarizes findings in plain language.</p></div>
+      <div class="feat cg"><h4>📰 General Writing</h4><p>Parent newsletters, recommendation letter drafts, department reports, meeting agendas — strong all-purpose writing assistant.</p></div>
+      <div class="feat cg"><h4>⚙️ Codex-Powered Tools</h4><p>Build working web apps for your classroom by describing them in plain English. Output opens in any browser and can be shared with students.</p></div>
+    </div>
+
+    <div class="stitle mt">🤙 Sample Prompts — Click to Copy</div>
+    <div class="pgrid">
+      <div class="pcard"><div class="plabel cg">Lesson Hook</div><div class="pbody"><h4>Story-Based Hook</h4><div class="pt" onclick="copyPrompt(this)">Write a short, engaging story (150 words) that hooks [grade] students on the concept of [topic] at the start of class.</div></div></div>
+      <div class="pcard"><div class="plabel cg">Communication</div><div class="pbody"><h4>Parent Newsletter</h4><div class="pt" onclick="copyPrompt(this)">Write a friendly parent newsletter about our upcoming unit on [topic]. Include what we will learn, how parents can help at home, and key dates. Keep it under 200 words.</div></div></div>
+      <div class="pcard"><div class="plabel cg">Data Analysis</div><div class="pbody"><h4>Grade Trend Analysis</h4><div class="pt" onclick="copyPrompt(this)">Here are my class quiz scores from the past 4 weeks: [paste data]. Identify any trends, flag students who may be struggling, and suggest which topics need reteaching.</div></div></div>
+      <div class="pcard"><div class="plabel cg">Codex — Build a Tool</div><div class="pbody"><h4>Classroom Timer App</h4><div class="pt" onclick="copyPrompt(this)">Build a countdown timer web page. Large display, let me set minutes and seconds, background shifts green → yellow → red in the last 30 seconds, sound alert when time is up.</div></div></div>
+      <div class="pcard"><div class="plabel cg">Codex — Build a Tool</div><div class="pbody"><h4>Random Student Picker</h4><div class="pt" onclick="copyPrompt(this)">Build a web app with a spinning wheel showing my class list. Clicking spin picks a random student, highlights their name, and lets me mark them as already called on. Students: [paste names].</div></div></div>
+      <div class="pcard"><div class="plabel cg">Codex — Build a Tool</div><div class="pbody"><h4>Vocabulary Flashcard App</h4><div class="pt" onclick="copyPrompt(this)">Build an interactive flashcard web app from this vocabulary list: [paste list]. Cards flip on click to show the definition, track correct/incorrect, include a shuffle button and final score screen.</div></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     GEMINI — Tropical Paradise
+══════════════════════════════════════════════ -->
+<div id="pg-gemini" class="page">
+  <div class="hero h-gm">
+    <h1>🌴 Gemini</h1>
+    <p>The tropical island of AI tools — lush, connected, and already living where you work. Gemini is woven into Drive, Docs, Gmail, and Classroom so you never have to leave your Google paradise.</p>
+    <div class="badges"><span class="badge">🌴 gemini.google.com</span><span class="badge">🆓 Free tier</span><span class="badge">🔗 Google Workspace integration</span></div>
+    <svg class="wave-btm" viewBox="0 0 1440 52" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,15 C480,55 960,0 1440,30 L1440,52 L0,52 Z" fill="#fdf6e9"/>
+    </svg>
+  </div>
+  <div class="wrap">
+    <div class="ibar">🌴 <strong>Set up camp:</strong> Visit <a href="https://gemini.google.com" target="_blank">gemini.google.com</a> or click "Ask Gemini" inside any Google app — Docs, Gmail, Drive, or Classroom. No new logins needed.</div>
+
+    <div class="stitle">🐚 Google Workspace Integration</div>
+    <div class="ggrid">
+      <div class="gcard"><div class="gi">📁</div><h4>Google Drive</h4><p>Search, summarize, or pull info from files already in your Drive — no copy-paste needed.</p></div>
+      <div class="gcard"><div class="gi">📄</div><h4>Google Docs</h4><p>Highlight text, open Gemini, and ask it to rewrite, expand, simplify, or add new sections.</p></div>
+      <div class="gcard"><div class="gi">📧</div><h4>Gmail</h4><p>Click "Help me write" to draft parent emails and newsletters without leaving your inbox.</p></div>
+      <div class="gcard"><div class="gi">🎓</div><h4>Google Classroom</h4><p>Generate assignment descriptions, rubrics, and feedback templates directly inside Classroom.</p></div>
+      <div class="gcard"><div class="gi">📊</div><h4>Google Sheets</h4><p>Write formulas, analyze your gradebook, and generate charts — just describe what you need.</p></div>
+      <div class="gcard"><div class="gi">▶️</div><h4>YouTube</h4><p>Paste a YouTube link and get a summary, key points, and ready-to-use discussion questions.</p></div>
+    </div>
+
+    <div class="stitle mt">🤙 Sample Prompts — Click to Copy</div>
+    <div class="pgrid">
+      <div class="pcard"><div class="plabel gm">Google Docs</div><div class="pbody"><h4>Summarize a Document</h4><div class="pt" onclick="copyPrompt(this)">Summarize this document in 5 bullet points and identify the 3 most important action items: [paste or attach doc]</div></div></div>
+      <div class="pcard"><div class="plabel gm">Gmail</div><div class="pbody"><h4>Draft Parent Email</h4><div class="pt" onclick="copyPrompt(this)">Draft a brief, warm email to parents about [topic / event / concern]. Keep it under 150 words, professional but friendly.</div></div></div>
+      <div class="pcard"><div class="plabel gm">Lesson Planning</div><div class="pbody"><h4>5-Day Lesson Plan Table</h4><div class="pt" onclick="copyPrompt(this)">Create a 5-day lesson plan for [topic] for [grade level] students. Format it as a table with columns for: Day, Objective, Activity, Materials, and Assessment.</div></div></div>
+      <div class="pcard"><div class="plabel gm">Google Classroom</div><div class="pbody"><h4>Assignment Description</h4><div class="pt" onclick="copyPrompt(this)">Write a clear, student-friendly assignment description for [task]. Include: what they need to do, how it will be graded, and when it's due. Grade: [level].</div></div></div>
+      <div class="pcard"><div class="plabel gm">YouTube</div><div class="pbody"><h4>Video Discussion Questions</h4><div class="pt" onclick="copyPrompt(this)">Here is a YouTube video I want to show my class: [paste URL]. Generate 5 discussion questions — 2 comprehension, 2 analysis, 1 connecting to students' own lives.</div></div></div>
+      <div class="pcard"><div class="plabel gm">Google Sheets</div><div class="pbody"><h4>Gradebook Formula</h4><div class="pt" onclick="copyPrompt(this)">I have a Google Sheet with columns A (student name), B–F (quiz scores), G (test score). Write a formula that calculates a weighted final grade: quizzes = 40%, test = 60%.</div></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     HOW TO PROMPT — Surf School 🐧
+══════════════════════════════════════════════ -->
+<div id="pg-prompting" class="page">
+  <div class="hero h-pt">
+    <h1>🐧 Surf School</h1>
+    <p>Every legend started as a beginner. The quality of your AI output depends almost entirely on the quality of your prompt — and these techniques, drawn from real research, will have you shredding in no time.</p>
+    <div class="badges">
+      <span class="badge">🌊 Works on all three tools</span>
+      <span class="badge">📚 Research-backed</span>
+    </div>
+    <svg class="wave-btm" viewBox="0 0 1440 52" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,30 C300,55 700,5 1000,35 C1150,50 1300,15 1440,30 L1440,52 L0,52 Z" fill="#fdf6e9"/>
+    </svg>
+  </div>
+  <div class="wrap">
+
+    <div class="ibar">
+      🤙 <strong>The golden rule:</strong> Treat prompting as a conversation, not a one-shot request. Write a prompt → review the output → refine with specific feedback → repeat. This loop consistently produces better results than trying to write the perfect prompt on the first try.
+    </div>
+
+    <div class="stitle">🏄 The 5 Essentials of a Good Prompt</div>
+    <div class="fgrid">
+      <div class="feat" style="border-color:#7b3fa0">
+        <h4>1. 🎭 Role — Tell it who to be</h4>
+        <p>Assign a persona to shape expertise and tone. AI responds to roles the way a guest speaker responds to being introduced.</p>
+        <p style="margin-top:.5rem;font-size:.78rem;background:#fdf3dc;padding:.5rem .65rem;border-radius:6px;font-style:italic;border-left:2px solid #f4a261">"You are an experienced 8th-grade science teacher who specializes in making complex topics accessible…"</p>
+      </div>
+      <div class="feat" style="border-color:#0077b6">
+        <h4>2. 🌊 Context — Set the scene</h4>
+        <p>Include grade level, subject, student background, and any constraints. The more context, the more tailored the response.</p>
+        <p style="margin-top:.5rem;font-size:.78rem;background:#fdf3dc;padding:.5rem .65rem;border-radius:6px;font-style:italic;border-left:2px solid #f4a261">"My class is 24 7th graders. 4 have IEPs. We just finished fractions and this is their first introduction to ratios."</p>
+      </div>
+      <div class="feat" style="border-color:var(--sunset)">
+        <h4>3. 🎯 Task — Be specific</h4>
+        <p>Use direct action verbs: create, write, analyze, compare, simplify, rewrite. Vague requests get vague answers.</p>
+        <p style="margin-top:.5rem;font-size:.78rem;background:#fdf3dc;padding:.5rem .65rem;border-radius:6px;font-style:italic;border-left:2px solid #f4a261">"Write 5 exit ticket questions — 2 recall, 2 application, 1 where students rate their confidence 1–5."</p>
+      </div>
+      <div class="feat" style="border-color:var(--cl)">
+        <h4>4. 📐 Format — Say how you want it</h4>
+        <p>Specify exactly how the output should look: bullet list, table, numbered steps, one paragraph, etc.</p>
+        <p style="margin-top:.5rem;font-size:.78rem;background:#fdf3dc;padding:.5rem .65rem;border-radius:6px;font-style:italic;border-left:2px solid #f4a261">"Format the output as a table: Day, Objective, Activity, Materials, Assessment."</p>
+      </div>
+      <div class="feat" style="border-color:var(--gm)">
+        <h4>5. 🚧 Constraints — Set the limits</h4>
+        <p>Tell it what to avoid, word counts, reading level, or any restrictions that matter.</p>
+        <p style="margin-top:.5rem;font-size:.78rem;background:#fdf3dc;padding:.5rem .65rem;border-radius:6px;font-style:italic;border-left:2px solid #f4a261">"Keep it under 150 words. No jargon. Avoid multiple choice — open-ended questions only."</p>
+      </div>
+    </div>
+
+    <div class="stitle mt">🌊 Wipeout vs. Barrel Roll</div>
+    <div class="compare-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:1rem">
+      <div style="background:#fffdf8;border-radius:12px;overflow:hidden;box-shadow:0 2px 10px rgba(0,0,0,.1);border:1.5px solid #e8d5b0">
+        <div style="background:linear-gradient(135deg,#8a1a0a,#c0392b);color:white;padding:.65rem 1rem;font-weight:800;font-size:.86rem">🤦 Wipeout Prompt</div>
+        <div style="padding:1rem">
+          <div style="font-family:Georgia,serif;font-size:.85rem;color:#666;line-height:1.7;font-style:italic;border-left:3px solid #e74c3c;padding-left:.75rem;margin-bottom:.75rem">"Make a lesson plan about photosynthesis."</div>
+          <ul style="list-style:none;display:flex;flex-direction:column;gap:.4rem">
+            <li style="font-size:.8rem;color:#666;display:flex;gap:.4rem"><span style="color:#c0392b">✗</span> No grade level</li>
+            <li style="font-size:.8rem;color:#666;display:flex;gap:.4rem"><span style="color:#c0392b">✗</span> No time constraint</li>
+            <li style="font-size:.8rem;color:#666;display:flex;gap:.4rem"><span style="color:#c0392b">✗</span> No format specified</li>
+            <li style="font-size:.8rem;color:#666;display:flex;gap:.4rem"><span style="color:#c0392b">✗</span> No student context</li>
+            <li style="font-size:.8rem;color:#666;display:flex;gap:.4rem"><span style="color:#c0392b">✗</span> Result: generic, unusable</li>
+          </ul>
+        </div>
+      </div>
+      <div style="background:#fffdf8;border-radius:12px;overflow:hidden;box-shadow:0 2px 10px rgba(0,0,0,.1);border:1.5px solid #e8d5b0">
+        <div style="background:linear-gradient(135deg,#005f94,#0096c7);color:white;padding:.65rem 1rem;font-weight:800;font-size:.86rem">🤙 Barrel Roll Prompt</div>
+        <div style="padding:1rem">
+          <div style="font-family:Georgia,serif;font-size:.82rem;color:#2a1a0a;line-height:1.7;font-style:italic;border-left:3px solid var(--cl);padding-left:.75rem;margin-bottom:.75rem">"Create a 50-minute lesson plan on photosynthesis for 8th-grade biology. Include: a 10-min hook, 20-min direct instruction with a visual analogy, a 15-min lab, and a 5-min exit ticket. 3 students have IEPs — note accommodations."</div>
+          <ul style="list-style:none;display:flex;flex-direction:column;gap:.4rem">
+            <li style="font-size:.8rem;color:#3a2a1a;display:flex;gap:.4rem"><span style="color:var(--palm)">✓</span> Grade + subject clear</li>
+            <li style="font-size:.8rem;color:#3a2a1a;display:flex;gap:.4rem"><span style="color:var(--palm)">✓</span> Time constraints set</li>
+            <li style="font-size:.8rem;color:#3a2a1a;display:flex;gap:.4rem"><span style="color:var(--palm)">✓</span> Format defined</li>
+            <li style="font-size:.8rem;color:#3a2a1a;display:flex;gap:.4rem"><span style="color:var(--palm)">✓</span> Student needs included</li>
+            <li style="font-size:.8rem;color:#3a2a1a;display:flex;gap:.4rem"><span style="color:var(--palm)">✓</span> Result: ready to use</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="stitle mt">🔥 3 Power Moves</div>
+    <div class="fgrid">
+      <div class="feat" style="border-color:#7b3fa0">
+        <h4>🔗 Chain-of-Thought</h4>
+        <p>Ask the AI to reason step-by-step before answering. This dramatically improves complex responses.</p>
+        <p style="margin-top:.5rem;font-size:.78rem;background:#fdf3dc;padding:.5rem .65rem;border-radius:6px;font-style:italic;border-left:2px solid #f4a261">Add: <strong>"Think step by step…"</strong> or <strong>"Walk me through your reasoning first, then give me the final answer."</strong></p>
+      </div>
+      <div class="feat" style="border-color:#0077b6">
+        <h4>📋 Few-Shot Examples</h4>
+        <p>Show the AI 1–2 examples of exactly what you want before asking for the real thing. The single biggest quality upgrade most teachers can make.</p>
+        <p style="margin-top:.5rem;font-size:.78rem;background:#fdf3dc;padding:.5rem .65rem;border-radius:6px;font-style:italic;border-left:2px solid #f4a261">"Here are two examples of the type of question I want: [examples]. Now create 5 more like these about [new topic]."</p>
+      </div>
+      <div class="feat" style="border-color:var(--sunset)">
+        <h4>🔁 Ask for Alternatives</h4>
+        <p>Don't accept the first response as the only option. Asking for multiple approaches lets you pick the best one for your students.</p>
+        <p style="margin-top:.5rem;font-size:.78rem;background:#fdf3dc;padding:.5rem .65rem;border-radius:6px;font-style:italic;border-left:2px solid #f4a261">"Give me 3 different ways to introduce this concept. For each, note the pros, cons, and ideal student type."</p>
+      </div>
+    </div>
+
+    <div class="stitle mt">🏆 The RISEN Framework</div>
+    <div class="ibar">🐧 RISEN is the most practical prompt framework for teachers. It covers every element that makes a prompt work. Use it as a checklist when a prompt isn't delivering.</div>
+    <div class="risen-row" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(165px,1fr));gap:1rem">
+      <div style="background:#fffdf8;border-radius:12px;padding:1.1rem;box-shadow:0 2px 10px rgba(0,0,0,.08);border-top:4px solid #7b3fa0;text-align:center;border:1.5px solid var(--border);border-top:4px solid #7b3fa0">
+        <div style="font-size:1.7rem;margin-bottom:.35rem">🎭</div>
+        <h4 style="font-size:.95rem;font-weight:800;color:#7b3fa0;margin-bottom:.25rem">R — Role</h4>
+        <p style="font-size:.78rem;color:var(--muted);line-height:1.5">Who should the AI be? <em>"You are an experienced AP History teacher…"</em></p>
+      </div>
+      <div style="background:#fffdf8;border-radius:12px;padding:1.1rem;box-shadow:0 2px 10px rgba(0,0,0,.08);border-top:4px solid #0077b6;text-align:center;border:1.5px solid var(--border);border-top:4px solid #0077b6">
+        <div style="font-size:1.7rem;margin-bottom:.35rem">📋</div>
+        <h4 style="font-size:.95rem;font-weight:800;color:#0077b6;margin-bottom:.25rem">I — Instruction</h4>
+        <p style="font-size:.78rem;color:var(--muted);line-height:1.5">What exactly should it do? Clear action verb + task.</p>
+      </div>
+      <div style="background:#fffdf8;border-radius:12px;padding:1.1rem;box-shadow:0 2px 10px rgba(0,0,0,.08);border-top:4px solid var(--sunset);text-align:center;border:1.5px solid var(--border);border-top:4px solid var(--sunset)">
+        <div style="font-size:1.7rem;margin-bottom:.35rem">🏗️</div>
+        <h4 style="font-size:.95rem;font-weight:800;color:#b86a00;margin-bottom:.25rem">S — Structure</h4>
+        <p style="font-size:.78rem;color:var(--muted);line-height:1.5">How should it be formatted? Table, bullets, numbered list?</p>
+      </div>
+      <div style="background:#fffdf8;border-radius:12px;padding:1.1rem;box-shadow:0 2px 10px rgba(0,0,0,.08);border-top:4px solid var(--cl);text-align:center;border:1.5px solid var(--border);border-top:4px solid var(--cl)">
+        <div style="font-size:1.7rem;margin-bottom:.35rem">💡</div>
+        <h4 style="font-size:.95rem;font-weight:800;color:var(--cl);margin-bottom:.25rem">E — Examples</h4>
+        <p style="font-size:.78rem;color:var(--muted);line-height:1.5">Provide 1–2 examples of ideal output. Worth more than any other element.</p>
+      </div>
+      <div style="background:#fffdf8;border-radius:12px;padding:1.1rem;box-shadow:0 2px 10px rgba(0,0,0,.08);border-top:4px solid var(--gm);text-align:center;border:1.5px solid var(--border);border-top:4px solid var(--gm)">
+        <div style="font-size:1.7rem;margin-bottom:.35rem">⚙️</div>
+        <h4 style="font-size:.95rem;font-weight:800;color:var(--gm);margin-bottom:.25rem">N — Nuance</h4>
+        <p style="font-size:.78rem;color:var(--muted);line-height:1.5">Edge cases, constraints, what to avoid, tone requirements.</p>
+      </div>
+    </div>
+
+    <div style="background:#fffdf8;border-radius:14px;box-shadow:0 3px 14px rgba(0,0,0,.1);overflow:hidden;margin-top:1rem;border:1.5px solid var(--border)">
+      <div style="background:linear-gradient(135deg,#7a4a00,#c8872a);color:white;padding:.75rem 1.25rem;font-weight:800;font-size:.9rem">🐧 RISEN in Action — Full Example</div>
+      <div style="padding:1.15rem 1.3rem">
+        <div style="font-size:.83rem;line-height:1.75;color:#2a1a0a">
+          <span style="font-weight:800;color:#7b3fa0">R:</span> "You are an experienced 10th-grade English teacher."<br>
+          <span style="font-weight:800;color:#0077b6">I:</span> "Create a formative assessment on symbolism in <em>The Great Gatsby</em>."<br>
+          <span style="font-weight:800;color:#b86a00">S:</span> "Format as a table: Question | Skill Level | Expected Answer."<br>
+          <span style="font-weight:800;color:var(--cl)">E:</span> "Example question: 'What does the green light represent for Gatsby, and how does it connect to the American Dream?'"<br>
+          <span style="font-weight:800;color:var(--gm)">N:</span> "Include 2 recall, 2 analysis, and 1 creative-response question. Avoid yes/no answers. Appropriate for 10th grade."
+        </div>
+      </div>
+    </div>
+
+    <div class="stitle mt">🚫 Wipeouts to Avoid</div>
+    <div class="tgrid">
+      <div class="tip" style="border-top-color:#c0392b"><h4>🚫 Too Vague</h4><p>"Write something about the Civil War" forces the AI to guess everything. Add grade, format, length, and purpose every time.</p></div>
+      <div class="tip" style="border-top-color:#c0392b"><h4>🚫 Overloading</h4><p>More than 2–3 distinct tasks in one prompt leads to shallow results on all of them. Break complex projects into separate prompts.</p></div>
+      <div class="tip" style="border-top-color:#c0392b"><h4>🚫 First Draft = Final</h4><p>The first response is a starting point. Follow up: "Make it more conversational" or "Shorten this to 3 bullets."</p></div>
+      <div class="tip" style="border-top-color:#c0392b"><h4>🚫 No Student Context</h4><p>AI doesn't know your students. Without grade level, subject, and learning needs, you'll get generic content no one can use.</p></div>
+      <div class="tip" style="border-top-color:#c0392b"><h4>🚫 Trusting Everything</h4><p>AI confidently produces wrong information. Always verify facts, dates, statistics, and citations before using with students.</p></div>
+      <div class="tip" style="border-top-color:#c0392b"><h4>🚫 Real Student Data</h4><p>Never paste real student names, IDs, or personally identifiable information into any AI tool. Use placeholders like "Student A."</p></div>
+    </div>
+
+    <div class="stitle mt">🔧 How to Refine a Response</div>
+    <div class="ibar">🌊 When the first response isn't quite right, don't paddle back to shore — follow up with specific feedback. These phrases get results:</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:.9rem">
+      <div class="pcard"><div class="plabel cl">Too long or complex</div><div class="pbody"><div class="pt" onclick="copyPrompt(this)">Shorten this to [X] sentences / bullet points. Keep only the most important ideas.</div></div></div>
+      <div class="pcard"><div class="plabel cl">Wrong reading level</div><div class="pbody"><div class="pt" onclick="copyPrompt(this)">Rewrite this for a [grade level] student. Use simpler vocabulary and shorter sentences.</div></div></div>
+      <div class="pcard"><div class="plabel cl">Needs more structure</div><div class="pbody"><div class="pt" onclick="copyPrompt(this)">Reorganize this into a table / numbered list / headings and subheadings.</div></div></div>
+      <div class="pcard"><div class="plabel cl">Too generic</div><div class="pbody"><div class="pt" onclick="copyPrompt(this)">Make this more specific to [subject / grade level / topic]. Add concrete examples students in [grade] would recognize.</div></div></div>
+      <div class="pcard"><div class="plabel cl">Wrong tone</div><div class="pbody"><div class="pt" onclick="copyPrompt(this)">Rewrite this in a warmer, more encouraging tone suitable for [audience — e.g., parents / struggling students].</div></div></div>
+      <div class="pcard"><div class="plabel cl">Missing differentiation</div><div class="pbody"><div class="pt" onclick="copyPrompt(this)">Now create two versions of this: one simplified for struggling learners and one extended for advanced students.</div></div></div>
+    </div>
+
+    <div class="stitle mt">🏄‍♀️ The Universal Prompt Template</div>
+    <div style="background:#fffdf8;border-radius:14px;box-shadow:0 3px 14px rgba(0,0,0,.1);overflow:hidden;border:1.5px solid var(--border)">
+      <div style="background:linear-gradient(135deg,#7a4a00,#c8872a);color:white;padding:.75rem 1.25rem;font-weight:800;font-size:.9rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.5rem">
+        <span>🐧 Universal Prompt Template</span>
+        <span style="font-size:.75rem;opacity:.85">Fill in the brackets, delete what you don't need</span>
+      </div>
+      <div style="padding:1.15rem 1.3rem">
+        <div class="pt" onclick="copyPrompt(this)" style="font-size:.84rem">You are a [role — e.g., experienced 9th-grade biology teacher].
+
+Context: [background about your class, unit, or situation]
+
+Task: [specific action verb + what you want — e.g., "Create a 5-question exit ticket on..."]
+
+Format: [how to structure the output — e.g., "Format as a table with columns for..."]
+
+Constraints: [word count, reading level, what to avoid, etc.]
+
+Here is an example of what I want: [optional but powerful — paste or describe an example]</div>
+      </div>
+    </div>
+
+    <div class="stitle mt">🌊 Platform Surf Tips</div>
+    <div class="cgrid">
+      <div class="card">
+        <div class="ch cl">🌊 Tips for Claude</div>
+        <div class="cb"><ul>
+          <li>Handles the longest, most detailed prompts best</li>
+          <li>Use XML-style tags to separate sections: <em>&lt;context&gt;…&lt;/context&gt;</em></li>
+          <li>Ask it to build interactive HTML tools — it renders them live</li>
+          <li>Great for multi-step tasks in a single prompt</li>
+          <li>Very reliable — less likely to hallucinate than other tools</li>
+        </ul></div>
+      </div>
+      <div class="card">
+        <div class="ch cg">🏄 Tips for ChatGPT</div>
+        <div class="cb"><ul>
+          <li>Works best with conversational, back-and-forth prompting</li>
+          <li>Follow up naturally: "Now make it shorter" or "Add an image"</li>
+          <li>Use for images (DALL-E) — describe exactly what you want</li>
+          <li>Voice mode lets you prompt hands-free on mobile</li>
+          <li>Use Codex for building tools: describe in plain English</li>
+        </ul></div>
+      </div>
+      <div class="card">
+        <div class="ch gm">🌴 Tips for Gemini</div>
+        <div class="cb"><ul>
+          <li>Start broad, then zoom in — it thinks in outlines</li>
+          <li>Prompt from inside Google Docs for seamless editing</li>
+          <li>Paste a Google Doc link instead of copying text</li>
+          <li>Ask it to use your Drive files directly by name</li>
+          <li>Best for email tone — always specify "warm but professional"</li>
+        </ul></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     PROMPT LIBRARY — The Surf Shack
+══════════════════════════════════════════════ -->
+<div id="pg-prompts" class="page">
+  <div class="hero h-pr">
+    <h1>🏄‍♀️ The Prompt Shack</h1>
+    <p>Everything you need, hanging on the wall. Copy-paste prompts organized by tool and subject. Click any prompt to copy — then paste it straight into Claude, ChatGPT, or Gemini and drop in.</p>
+    <svg class="wave-btm" viewBox="0 0 1440 52" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,40 C360,10 720,55 1080,20 C1260,5 1380,40 1440,30 L1440,52 L0,52 Z" fill="#fdf6e9"/>
+    </svg>
+  </div>
+  <div class="wrap">
+    <div class="ibar">🤙 <strong>How to use:</strong> Replace the <strong>[bracketed placeholders]</strong> with your specific topic, grade level, or content. The more specific you are, the better the wave you'll catch.</div>
+
+    <div class="psec">
+      <div class="pshead cl">🌊 Claude — Science &amp; Math</div>
+      <div class="pgrid">
+        <div class="pcard"><div class="plabel cl">Differentiation</div><div class="pbody"><h4>Three-Level Study Guide</h4><div class="pt" onclick="copyPrompt(this)">Here are my notes on [topic]. Create three study guides — one for struggling students using simple language, one on-level, and one for advanced students with deeper thinking questions. Grade: [level].</div></div></div>
+        <div class="pcard"><div class="plabel cl">Assessment</div><div class="pbody"><h4>Error Analysis</h4><div class="pt" onclick="copyPrompt(this)">A student wrote this solution: [paste work]. Identify the likely misconception causing the error and suggest how I should reteach it.</div></div></div>
+        <div class="pcard"><div class="plabel cl">Problem Sets</div><div class="pbody"><h4>Tiered Word Problems</h4><div class="pt" onclick="copyPrompt(this)">Write 8 word problems about [topic] for [grade level] students. Make 3 easy, 3 medium, and 2 challenging. Use real-world contexts students care about.</div></div></div>
+        <div class="pcard"><div class="plabel cl">Bell Ringers</div><div class="pbody"><h4>Full Week of Bell Ringers</h4><div class="pt" onclick="copyPrompt(this)">Create 5 bell ringer questions for a week of [subject] on [topic] for [grade level]. Each should take 3–5 minutes. Mix recall, application, and one that sparks curiosity.</div></div></div>
+      </div>
+    </div>
+
+    <div class="psec">
+      <div class="pshead cl">🌊 Claude — ELA &amp; Religion</div>
+      <div class="pgrid">
+        <div class="pcard"><div class="plabel cl">Reading</div><div class="pbody"><h4>Reading Level Rewrite</h4><div class="pt" onclick="copyPrompt(this)">Rewrite this passage at a [6th / 8th / 10th] grade reading level without losing the key ideas: [paste passage here]</div></div></div>
+        <div class="pcard"><div class="plabel cl">Discussion</div><div class="pbody"><h4>Layered Discussion Questions</h4><div class="pt" onclick="copyPrompt(this)">Create 6 discussion questions for [text / passage / topic]. Include 2 recall, 2 analysis, and 2 that connect to students' lives. Grade: [level].</div></div></div>
+        <div class="pcard"><div class="plabel cl">Reflection</div><div class="pbody"><h4>Reflection Prompts</h4><div class="pt" onclick="copyPrompt(this)">Write 5 written reflection prompts for [topic / scripture passage] that are age-appropriate for [grade] students and encourage personal connection.</div></div></div>
+        <div class="pcard"><div class="plabel cl">Rubric</div><div class="pbody"><h4>Writing Rubric</h4><div class="pt" onclick="copyPrompt(this)">Create a detailed 4-point rubric for a [type of writing] assignment for [grade] students. Include criteria for: thesis/argument, evidence, organization, voice, and conventions. Format as a table.</div></div></div>
+      </div>
+    </div>
+
+    <div class="psec">
+      <div class="pshead cl">🌊 Claude — Planning &amp; Assessment</div>
+      <div class="pgrid">
+        <div class="pcard"><div class="plabel cl">Unit Planning</div><div class="pbody"><h4>Full Unit Plan</h4><div class="pt" onclick="copyPrompt(this)">Create a complete 2-week unit plan on [topic] for [grade level]. Include daily objectives, activities, materials, formative assessments, and a summative assessment. Align to [standard or theme].</div></div></div>
+        <div class="pcard"><div class="plabel cl">Exit Tickets</div><div class="pbody"><h4>Exit Ticket Set</h4><div class="pt" onclick="copyPrompt(this)">Write 5 exit tickets for [grade] [subject] on [topic]. Include 2 recall, 2 application, and 1 asking students to identify something they're still confused about.</div></div></div>
+        <div class="pcard"><div class="plabel cl">Review Game</div><div class="pbody"><h4>Jeopardy-Style Game</h4><div class="pt" onclick="copyPrompt(this)">Build a Jeopardy-style review game for [topic] for [grade] students. Include 4 categories with 4 questions each, ranging from 100 to 400 points. Mix recall and application questions.</div></div></div>
+        <div class="pcard"><div class="plabel cl">Accommodations</div><div class="pbody"><h4>Simplified Assignment</h4><div class="pt" onclick="copyPrompt(this)">Take this assignment and create a modified version for a student who needs support. Simplify the language, break directions into numbered steps, and add sentence starters where helpful: [paste assignment]</div></div></div>
+      </div>
+    </div>
+
+    <div class="psec">
+      <div class="pshead cg">🏄 ChatGPT — All Subjects</div>
+      <div class="pgrid">
+        <div class="pcard"><div class="plabel cg">Engagement</div><div class="pbody"><h4>Story-Based Lesson Hook</h4><div class="pt" onclick="copyPrompt(this)">Write a short, engaging story (150 words) that hooks [grade] students on the concept of [topic] at the start of class.</div></div></div>
+        <div class="pcard"><div class="plabel cg">Communication</div><div class="pbody"><h4>Parent Newsletter</h4><div class="pt" onclick="copyPrompt(this)">Write a friendly parent newsletter about our upcoming unit on [topic]. Include what we will learn, how parents can help at home, and key dates. Keep it under 200 words.</div></div></div>
+        <div class="pcard"><div class="plabel cg">Codex</div><div class="pbody"><h4>Random Student Picker</h4><div class="pt" onclick="copyPrompt(this)">Build a web app with a spinning wheel showing my class list. Clicking spin picks a random student, highlights their name, and lets me mark them as already called on. Students: [paste names].</div></div></div>
+        <div class="pcard"><div class="plabel cg">Codex</div><div class="pbody"><h4>Classroom Timer</h4><div class="pt" onclick="copyPrompt(this)">Build a countdown timer web page. Large display, let me set minutes and seconds, background shifts green → yellow → red in the last 30 seconds, sound alert when time is up.</div></div></div>
+      </div>
+    </div>
+
+    <div class="psec">
+      <div class="pshead gm">🌴 Gemini — Google Workspace</div>
+      <div class="pgrid">
+        <div class="pcard"><div class="plabel gm">Google Docs</div><div class="pbody"><h4>Summarize a Document</h4><div class="pt" onclick="copyPrompt(this)">Summarize this document in 5 bullet points and identify the 3 most important action items: [paste or attach doc]</div></div></div>
+        <div class="pcard"><div class="plabel gm">Gmail</div><div class="pbody"><h4>Draft Parent Email</h4><div class="pt" onclick="copyPrompt(this)">Draft a brief, warm email to parents about [topic / event / concern]. Keep it under 150 words, professional but friendly.</div></div></div>
+        <div class="pcard"><div class="plabel gm">Lesson Planning</div><div class="pbody"><h4>5-Day Lesson Plan Table</h4><div class="pt" onclick="copyPrompt(this)">Create a 5-day lesson plan for [topic] for [grade level] students. Format it as a table with columns for: Day, Objective, Activity, Materials, and Assessment.</div></div></div>
+        <div class="pcard"><div class="plabel gm">YouTube</div><div class="pbody"><h4>Video Summary + Questions</h4><div class="pt" onclick="copyPrompt(this)">Summarize this YouTube video in 5 key points and generate 4 discussion questions I can use with [grade] students: [paste URL]</div></div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     WHICH TOOL — The Surf Forecast
+══════════════════════════════════════════════ -->
+<div id="pg-decision" class="page">
+  <div class="hero h-dc">
+    <h1>🧭 The Surf Forecast</h1>
+    <p>Read the conditions before you paddle out. Find your task on the left and the recommended tool on the right — no wipeouts.</p>
+    <svg class="wave-btm" viewBox="0 0 1440 52" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,22 C480,52 960,0 1440,28 L1440,52 L0,52 Z" fill="#fdf6e9"/>
+    </svg>
+  </div>
+  <div class="wrap">
+
+    <div class="stitle">🌊 Today's Conditions</div>
+    <div class="twrap">
+      <table>
+        <thead><tr><th>If you need to…</th><th style="width:200px">Paddle to…</th></tr></thead>
+        <tbody>
+          <tr><td>Make different versions of content for different student levels</td><td><span class="tag cl">🌊 Claude</span></td></tr>
+          <tr><td>Generate an AI image for a worksheet or presentation</td><td><span class="tag both">🏄 ChatGPT or 🌴 Gemini</span></td></tr>
+          <tr><td>Summarize or work directly with a Google Doc</td><td><span class="tag gm">🌴 Gemini</span></td></tr>
+          <tr><td>Build a live review game or interactive HTML tool</td><td><span class="tag cl">🌊 Claude</span></td></tr>
+          <tr><td>Write a detailed, well-structured rubric</td><td><span class="tag cl">🌊 Claude</span></td></tr>
+          <tr><td>Draft a parent email inside Gmail</td><td><span class="tag gm">🌴 Gemini</span></td></tr>
+          <tr><td>Write a creative story or hook for a lesson</td><td><span class="tag cg">🏄 ChatGPT</span></td></tr>
+          <tr><td>Rewrite a passage at a lower reading level</td><td><span class="tag both">🌊 Claude or 🏄 ChatGPT</span></td></tr>
+          <tr><td>Generate a full week of bell ringers at once</td><td><span class="tag cl">🌊 Claude</span></td></tr>
+          <tr><td>Analyze grades or data from a spreadsheet</td><td><span class="tag cg">🏄 ChatGPT</span></td></tr>
+          <tr><td>Connect AI directly to Google Classroom</td><td><span class="tag gm">🌴 Gemini</span></td></tr>
+          <tr><td>Write a complete unit plan with activities and assessments</td><td><span class="tag cl">🌊 Claude</span></td></tr>
+          <tr><td>Build a custom classroom tool (timer, picker, calculator)</td><td><span class="tag cg">🏄 ChatGPT + Codex</span></td></tr>
+          <tr><td>Summarize a YouTube video for class discussion</td><td><span class="tag gm">🌴 Gemini</span></td></tr>
+          <tr><td>Conduct error analysis on student work</td><td><span class="tag cl">🌊 Claude</span></td></tr>
+          <tr><td>Write a parent newsletter</td><td><span class="tag cg">🏄 ChatGPT</span></td></tr>
+          <tr><td>Create an interactive vocabulary flashcard app</td><td><span class="tag cg">🏄 ChatGPT + Codex</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="stitle mt">☀️ Pro Tips from the Beach</div>
+    <div class="tgrid">
+      <div class="tip"><h4>🎯 Be Specific</h4><p>"Write 5 exit tickets for 8th grade science on cell division, two recall and three application" beats "make some questions" every time.</p></div>
+      <div class="tip"><h4>📦 Bundle Requests</h4><p>Ask for the rubric, exit tickets, AND parent email all in one prompt — one message, three deliverables.</p></div>
+      <div class="tip"><h4>🔄 Fresh Chat = Better Results</h4><p>Start a new chat for each unrelated task. Mixing topics in one long chat confuses the AI and wastes daily messages.</p></div>
+      <div class="tip"><h4>⏱ Save AI for Big Tasks</h4><p>Reserve AI for tasks that would take you 20+ minutes manually — differentiated materials, full rubrics, week-long unit plans.</p></div>
+    </div>
+
+    <div class="stitle mt">🏄 Open Each Tool</div>
+    <div class="btn-row">
+      <a href="https://claude.ai" target="_blank" class="btn cl btn-inline">🌊 Open Claude</a>
+      <a href="https://chatgpt.com" target="_blank" class="btn cg btn-inline">🏄 Open ChatGPT</a>
+      <a href="https://gemini.google.com" target="_blank" class="btn gm btn-inline">🌴 Open Gemini</a>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     LIVE EXAMPLES — The Competition
+══════════════════════════════════════════════ -->
+<div id="pg-examples" class="page">
+  <div class="hero h-ex">
+    <h1>🏆 The Competition</h1>
+    <p>Watch the pros ride. These are real AI-built tools for MCA teachers — no coding required. Click any card to open a live example and see what's possible for your classroom.</p>
+    <div class="badges">
+      <span class="badge">🤙 Click to open live</span>
+      <span class="badge">🏫 Built for MCA</span>
+    </div>
+    <svg class="wave-btm" viewBox="0 0 1440 52" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,28 C200,52 500,5 800,32 C1000,48 1200,10 1440,25 L1440,52 L0,52 Z" fill="#fdf6e9"/>
+    </svg>
+  </div>
+  <div class="wrap">
+    <div class="ibar">🌊 <strong>What is an artifact?</strong> An artifact is a live, interactive tool Claude builds for you — a game, form, calculator, or activity that runs right in the browser. You describe it in plain English and it just works.</div>
+
+    <div class="stitle">🥇 MCA Artifact Showcase</div>
+    <div class="cgrid">
+      <div class="card">
+        <div class="ch cl">📝 Student Agreement Tool</div>
+        <div class="cb">
+          <p>An interactive agreement form students fill out and submit — great for classroom rules, lab safety contracts, or academic integrity pledges.</p>
+          <div class="ehint"><strong>🌊 Built with Claude</strong>"Build a digital student agreement form for [topic] that collects student name, signature, and date."</div>
+        </div>
+        <div class="cf"><a href="https://clindeman23.github.io/agreement" target="_blank" class="btn cl">🏄 Open Live Example →</a></div>
+      </div>
+      <div class="card">
+        <div class="ch cg">🎯 XGO Interactive Activity</div>
+        <div class="cb">
+          <p>An interactive classroom activity — the kind of engaging, click-to-play tool that keeps students focused and makes review genuinely fun.</p>
+          <div class="ehint"><strong>🏄 Built with Claude</strong>"Build an interactive review game for [topic] where students answer questions to earn points."</div>
+        </div>
+        <div class="cf"><a href="https://clindeman23.github.io/xgo" target="_blank" class="btn cg">🤙 Open Live Example →</a></div>
+      </div>
+      <div class="card">
+        <div class="ch" style="background:linear-gradient(135deg,#7a4a00,#c8872a)">⚡ Claude Public Artifact</div>
+        <div class="cb">
+          <p>A live artifact shared directly from Claude.ai — exactly what teachers and students see when Claude builds and shares an interactive tool from the chat.</p>
+          <div class="ehint"><strong>⚡ Shared from Claude.ai</strong>After Claude builds a tool, click "Share" to get a public link for Google Classroom or email.</div>
+        </div>
+        <div class="cf"><a href="https://claude.ai/public/artifacts/ab60f08b-814b-478c-8c2a-4b2f85146005" target="_blank" class="btn gold">🌅 Open Live Example →</a></div>
+      </div>
+    </div>
+
+    <div class="stitle mt">🐧 How to Build Your Own</div>
+    <div class="tgrid">
+      <div class="tip"><h4>1. 🌊 Paddle Out</h4><p>Go to <a href="https://claude.ai" target="_blank">claude.ai</a> and start a new chat. The free tier builds and renders artifacts — no upgrade needed.</p></div>
+      <div class="tip"><h4>2. 🏄 Describe the Ride</h4><p>Tell Claude what the tool should do in plain English. Include what it looks like, how students use it, and what content it covers.</p></div>
+      <div class="tip"><h4>3. 👀 Check the Preview</h4><p>Claude renders the tool live in the right panel. Interact with it to test it — and ask Claude to make changes if needed.</p></div>
+      <div class="tip"><h4>4. 🤙 Share with Students</h4><p>Click the Share icon to get a public link. Paste it into Google Classroom, email it, or put it on your projector.</p></div>
+    </div>
+
+    <div class="stitle mt">🏄‍♀️ Prompts to Build Your Own — Click to Copy</div>
+    <div class="pgrid">
+      <div class="pcard"><div class="plabel cl">Review Game</div><div class="pbody"><h4>Jeopardy-Style Quiz</h4><div class="pt" onclick="copyPrompt(this)">Build a Jeopardy-style review game for [topic] for [grade] students. Include 4 categories with 4 questions each, ranging from 100 to 400 points. Mix recall and application questions.</div></div></div>
+      <div class="pcard"><div class="plabel cl">Classroom Tool</div><div class="pbody"><h4>Random Student Picker</h4><div class="pt" onclick="copyPrompt(this)">Build a random student picker with a spin animation. Student names: [list names]. It should mark students as already called on and have a reset button.</div></div></div>
+      <div class="pcard"><div class="plabel cl">Assessment</div><div class="pbody"><h4>Interactive Exit Ticket</h4><div class="pt" onclick="copyPrompt(this)">Build a digital exit ticket for [topic]. Include 2 multiple choice questions, 1 short answer, and a 1–5 confidence rating. Show a summary of answers at the end.</div></div></div>
+      <div class="pcard"><div class="plabel cl">Agreement Form</div><div class="pbody"><h4>Student Agreement Form</h4><div class="pt" onclick="copyPrompt(this)">Build a digital student agreement form for [topic — e.g., lab safety, academic integrity]. Display the rules clearly, collect student name and date, and show a confirmation message after they submit.</div></div></div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <p>🤙 Mount Carmel Academy — Professional Development &nbsp;|&nbsp;
+  <a href="https://claude.ai" target="_blank">claude.ai</a> ·
+  <a href="https://chatgpt.com" target="_blank">chatgpt.com</a> ·
+  <a href="https://gemini.google.com" target="_blank">gemini.google.com</a>
+  &nbsp;|&nbsp; 🌊 Hang loose &amp; vibe code</p>
+</footer>
+
+<script>
+function go(name, btn) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
+  document.getElementById('pg-' + name).classList.add('active');
+  if (btn) btn.classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+function copyPrompt(el) {
+  const text = el.innerText.replace('📋 click to copy','').replace('✅ Copied!','').trim();
+  navigator.clipboard.writeText(text).then(() => {
+    el.classList.add('copied');
+    setTimeout(() => el.classList.remove('copied'), 2000);
+  });
+}
+</script>
+</body>
+</html>
